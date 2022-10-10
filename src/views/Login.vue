@@ -1,6 +1,6 @@
 <template>
     <section class="section section-shaped section-lg my-0">
-        <div class="shape shape-style-1 bg-gradient-default">
+        <div class="shape shape-style-1 bg-gradient-primary">
             <span></span>
             <span></span>
             <span></span>
@@ -17,7 +17,7 @@
                           header-classes="bg-white pb-5"
                           body-classes="px-lg-5 py-lg-5"
                           class="border-0">
-                        <template>
+                        <!-- <template>
                             <div class="text-muted text-center mb-3">
                                 <small>Sign in with</small>
                             </div>
@@ -32,10 +32,10 @@
                                     Google
                                 </base-button>
                             </div>
-                        </template>
+                        </template> -->
                         <template>
                             <div class="text-center text-muted mb-4">
-                                <small>Or sign in with credentials</small>
+                                <h5 class="text-white">Iniciar sesión</h5>
                             </div>
                             <form role="form">
                                 <base-input alternative
@@ -45,19 +45,19 @@
                                 </base-input>
                                 <base-input alternative
                                             type="password"
-                                            placeholder="Password"
+                                            placeholder="Contraseña"
                                             addon-left-icon="ni ni-lock-circle-open">
                                 </base-input>
-                                <base-checkbox>
+                                <!-- <base-checkbox>
                                     Remember me
-                                </base-checkbox>
+                                </base-checkbox> -->
                                 <div class="text-center">
-                                    <base-button type="primary" class="my-4">Sign In</base-button>
+                                    <base-button type="primary" class="my-4">Ingresar</base-button>
                                 </div>
                             </form>
                         </template>
                     </card>
-                    <div class="row mt-3">
+                    <!-- <div class="row mt-3">
                         <div class="col-6">
                             <a href="#" class="text-light">
                                 <small>Forgot password?</small>
@@ -68,7 +68,7 @@
                                 <small>Create new account</small>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
