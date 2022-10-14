@@ -158,12 +158,42 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
 export default {
+    beforeMount() {
+        this.getCategories()
+    },
     components: {
         Tabs,
         TabPane
+    },
+
+    data: () => ({
+        husbands: [],
+        categories: []
+    }),
+
+    methods: {
+        getCategories() {
+            axios
+                .get("url")
+                .then((response) => this.setDataCategories(response.data))
+        },
+        setDataCategories(categories) {
+            categories.forEach(element => {
+                this.categories.push({id: element.id, name: element.name})
+            });
+        },
+        getHusbands() {
+            axios
+                .get("url")
+                .then((response) => this.setDataHusbands(response.data))
+        },
+        setDataHusbands(husbands) {
+            this.husbands = husbands;
+        }
     }
 };
 </script>
