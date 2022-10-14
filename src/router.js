@@ -1,12 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
+import AppFooterSimple from "./layout/AppFooterSimple";
 import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
+import MaridosAdmin from "./views/Maridos/MaridosAdmin.vue";
 
 Vue.use(Router);
 
@@ -19,7 +21,7 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Components,
-        footer: AppFooter
+        footer: AppFooterSimple
       }
     },
     {
@@ -55,7 +57,16 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Profile,
-        footer: AppFooter
+        footer: AppFooterSimple
+      }
+    },
+    {
+      path: "/maridos",
+      name: "maridos",
+      components: {
+        header: AppHeader,
+        default: MaridosAdmin,
+        footer: AppFooterSimple
       }
     }
   ],

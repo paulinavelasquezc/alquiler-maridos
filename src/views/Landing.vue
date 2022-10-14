@@ -18,7 +18,7 @@
                     <div class="col px-0">
                         <div class="row">
                             <div class="col-lg-9">
-                                <h1 class="display-3  text-white">Alquiler de Maridos
+                                <h1 class="display-3  text-white">Maridos en Alquiler
                                     <span>La aplicación con todas las soluciones a tus necesidades</span>
                                 </h1>
                                 <p class="lead  text-white">Busca y contrata al personal adecuado y certificado para 
@@ -289,7 +289,7 @@
                                 <div class="mt-3">
                                     <base-button tag="a" href="#" type="danger" icon="fa fa-brands fa-linkedin" rounded
                                                  icon-only></base-button>
-                                    <base-button tag="a" href="#" type="danger" icon="fa fa-brands fa-gitlab" rounded
+                                    <base-button tag="a" href="https://gitlab.com/johaneldiver.jesr" type="danger" icon="fa fa-brands fa-gitlab" rounded
                                                  icon-only></base-button>
                                 </div>
                             </div>

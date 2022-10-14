@@ -60,7 +60,7 @@
                                 <h6 class="text-primary mb-md-1">Iniciar sesión</h6>
                             </div>
                         </router-link>
-                        <a href="#"
+                        <router-link to="/maridos"
                            class="media d-flex align-items-center">
                             <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
                                 <i class="ni ni-single-02"></i>
@@ -68,7 +68,7 @@
                             <div class="media-body ml-3">
                                 <h6 class="text-primary mb-md-1">Maridos</h6>
                             </div>
-                        </a>
+                        </router-link>
                     </div>
                 </base-dropdown>
                 
