@@ -80,6 +80,15 @@
         }
     }
 
+    .shape-skew-husband {
+        transform: skewY(0deg);
+        transform-origin: 0;
+
+        span {
+            transform: skew(8deg);
+        }
+    }
+
     // Color variations
     .shape-primary {
         background: linear-gradient(150deg, shapes-primary-color("step-1-gradient-bg") 15%, shapes-primary-color("step-2-gradient-bg") 70%, shapes-primary-color("step-3-gradient-bg") 94%);
@@ -480,6 +489,12 @@
             height: 553px;
         }
     }
+}
+
+.section-husband-cover {
+    height: 100px;
+    background-size: cover;
+    background-position: center center;
 }
 
 // Profile cover
