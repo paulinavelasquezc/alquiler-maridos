@@ -36,7 +36,7 @@
                               <div
                                 class="col-lg-3"
                                 v-for="category in item.categories"
-                                :key="category.index"
+                                :key="category.id"
                               >
                                 <badge
                                   :style="{
@@ -63,7 +63,7 @@
                                   <img
                                     v-lazy="'img/theme/user.png'"
                                     alt="Raised image"
-                                    class="img-fluid rounded shadow-lg"
+                                    class="img-fluid rounded"
                                     style="max-width: 180px; max-height: 180px"
                                   />
                                 </div>
@@ -196,13 +196,11 @@ export default {
     },
     setDataHusbands(husbands) {
       this.husbands = husbands;
-      //console.log(husbands);
       husbands.forEach((husband) => {
         husband.categories = husband.idCategories.map(function (idCode) {
           return fromIdCategory(idCode);
         });
       });
-      console.log(husbands);
     },
     createHusband() {
       let data = {
