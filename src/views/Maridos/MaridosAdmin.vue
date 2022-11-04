@@ -1,6 +1,5 @@
 <template>
   <div class="maridos-admin">
-    <h1></h1>
     <section class="section-husband-cover section-shaped my-0">
       <div
         class="shape shape-style-1 shape-default shape-skew-husband alpha-4"
