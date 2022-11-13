@@ -9,6 +9,7 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import MaridosAdmin from "./views/Maridos/MaridosAdmin.vue";
+import ServicesAdmin from "./views/Services/ServicesAdmin.vue";
 
 Vue.use(Router);
 
@@ -66,6 +67,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: MaridosAdmin,
+        footer: AppFooterSimple,
+      },
+    },
+    {
+      path: "/services",
+      name: "services",
+      components: {
+        header: AppHeader,
+        default: ServicesAdmin,
         footer: AppFooterSimple,
       },
     },

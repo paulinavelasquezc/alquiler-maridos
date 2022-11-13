@@ -12,14 +12,14 @@
             <!-- Tabs with icons -->
             <div class="mb-3">
               <h2 class="text-uppercase font-weight-bold">
-                Panel de administración de Maridos
+                Panel de administración de Servicios
               </h2>
             </div>
             <tabs fill class="flex-column flex-md-row">
               <card>
                 <tab-pane key="tab1">
                   <template slot="title">
-                    <i class="ni ni-circle-08 mr-2"></i>Maridos
+                    <i class="ni ni-circle-08 mr-2"></i>Servicios activos
                   </template>
                   <div>
                     <div class="row">
@@ -146,7 +146,7 @@
                 </tab-pane>
                 <tab-pane key="tab2">
                   <template slot="title">
-                    <i class="ni ni-collection mr-2"></i>Crear Marido
+                    <i class="ni ni-collection mr-2"></i>Historial
                   </template>
                   <div>
                     <div class="row">

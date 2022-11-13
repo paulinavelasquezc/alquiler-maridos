@@ -1,11 +1,11 @@
 <template>
-    <header class="header-global">
-        <base-nav class="navbar-main" transparent type="" effect="light" expand>
-            <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-                <img src="img/brand/white.png" alt="logo">
-            </router-link>
-            <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-                <!-- <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
+  <header class="header-global">
+    <base-nav class="navbar-main" transparent type="" effect="light" expand>
+      <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
+        <img src="img/brand/white.png" alt="logo" />
+      </router-link>
+      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+        <!-- <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
                     <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
                         <i class="ni ni-ui-04 d-lg-none"></i>
                         <span class="nav-link-inner--text">Components</span>
@@ -35,45 +35,86 @@
                         </a>
                     </div>
                 </base-dropdown> -->
-                <base-dropdown tag="li" class="nav-item">
-                    <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
-                        <i class="ni ni-collection d-lg-none"></i>
-                        <span class="nav-link-inner--text">Examples</span>
-                    </a>
-                    <router-link to="/landing" class="dropdown-item">Componentes</router-link>
-                    <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link>
+        <base-dropdown tag="li" class="nav-item">
+          <a
+            slot="title"
+            href="#"
+            class="nav-link"
+            data-toggle="dropdown"
+            role="button"
+          >
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Examples</span>
+          </a>
+          <router-link to="/landing" class="dropdown-item"
+            >Componentes</router-link
+          >
+          <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link>
                     <router-link to="/login" class="dropdown-item">Login</router-link>
                     <router-link to="/register" class="dropdown-item">Register</router-link> -->
-                </base-dropdown>
-                <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
-                    <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
-                        <i class="ni ni-ui-04 d-lg-none"></i>
-                        <span class="nav-link-inner--text">Administración</span>
-                    </a>
-                    <div class="dropdown-menu-inner">
-                        <router-link to="/login"
-                           class="media d-flex align-items-center">
-                            <div class="icon icon-shape bg-gradient-info rounded-circle text-white">
-                                <i class="ni ni-key-25"></i>
-                            </div>
-                            <div class="media-body ml-3">
-                                <h6 class="text-primary mb-md-1">Iniciar sesión</h6>
-                            </div>
-                        </router-link>
-                        <router-link to="/maridos"
-                           class="media d-flex align-items-center">
-                            <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                                <i class="ni ni-single-02"></i>
-                            </div>
-                            <div class="media-body ml-3">
-                                <h6 class="text-primary mb-md-1">Maridos</h6>
-                            </div>
-                        </router-link>
-                    </div>
-                </base-dropdown>      
-            </ul>
-        </base-nav>
-    </header>
+        </base-dropdown>
+        <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
+          <a
+            slot="title"
+            href="#"
+            class="nav-link"
+            data-toggle="dropdown"
+            role="button"
+          >
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">Administración</span>
+          </a>
+          <div class="dropdown-menu-inner">
+            <router-link to="/login" class="media d-flex align-items-center">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-info
+                  rounded-circle
+                  text-white
+                "
+              >
+                <i class="ni ni-key-25"></i>
+              </div>
+              <div class="media-body ml-3">
+                <h6 class="text-primary mb-md-1">Iniciar sesión</h6>
+              </div>
+            </router-link>
+            <router-link to="/maridos" class="media d-flex align-items-center">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-primary
+                  rounded-circle
+                  text-white
+                "
+              >
+                <i class="ni ni-single-02"></i>
+              </div>
+              <div class="media-body ml-3">
+                <h6 class="text-primary mb-md-1">Maridos</h6>
+              </div>
+            </router-link>
+            <router-link to="/services" class="media d-flex align-items-center">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-light
+                  rounded-circle
+                  text-white
+                "
+              >
+                <i class="ni ni-book-bookmark"></i>
+              </div>
+              <div class="media-body ml-3">
+                <h6 class="text-primary mb-md-1">Servicios</h6>
+              </div>
+            </router-link>
+          </div>
+        </base-dropdown>
+      </ul>
+    </base-nav>
+  </header>
 </template>
 <script>
 import BaseNav from "@/components/BaseNav";
@@ -84,8 +125,8 @@ export default {
   components: {
     BaseNav,
     CloseButton,
-    BaseDropdown
-  }
+    BaseDropdown,
+  },
 };
 </script>
 <style>
