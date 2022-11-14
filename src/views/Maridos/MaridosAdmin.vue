@@ -9,7 +9,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <!-- Tabs with icons -->
+            <!-- Tabs -->
             <div class="mb-3">
               <h2 class="text-uppercase font-weight-bold">
                 Panel de administración de Maridos
@@ -118,11 +118,16 @@
                                     required
                                   ></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                  <select class="form-control">
-                                    <option>Categorías</option>
+                                <!-- <div class="col-md-6">
+                                  <select
+                                    class="form-control"
+                                    :items="categories"
+                                    Label="Categorías"
+                                    item-text="name"
+                                    item-value="id"
+                                  >
                                   </select>
-                                </div>
+                                </div> -->
                               </div>
                               <template slot="footer">
                                 <base-button
@@ -177,8 +182,10 @@
                         ></base-input>
                       </div>
                       <div class="col-md-6">
-                        <select class="form-control">
-                          <option>Categorías</option>
+                        <select class="form-control" v-model="category">
+                          <option v-for="item in categories" :key="item.id">
+                            {{ item.name }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -226,7 +233,7 @@ const Swal = require("sweetalert2");
 
 export default {
   beforeMount() {
-    // this.getCategories()
+    this.getCategories();
   },
   components: {
     Tabs,
@@ -246,6 +253,7 @@ export default {
     phoneNumber: "",
     email: "",
     description: "",
+    category: "",
   }),
 
   created() {
@@ -255,10 +263,18 @@ export default {
   methods: {
     getCategories() {
       axios
-        .get("url")
+        .get(
+          "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/categories/"
+        )
         .then((response) => this.setDataCategories(response.data));
     },
-    // setDataCategories(husbands) {},
+
+    setDataCategories(categories) {
+      categories.forEach((element) => {
+        this.categories.push({ id: element.id, name: element.name });
+      });
+    },
+
     getHusbands() {
       axios
         .get(
@@ -266,6 +282,7 @@ export default {
         )
         .then((response) => this.setDataHusbands(response.data));
     },
+
     setDataHusbands(husbands) {
       this.husbands = husbands;
       husbands.forEach((husband) => {
@@ -274,7 +291,10 @@ export default {
         });
       });
     },
+
     createHusband() {
+      // let categoriesHusband = []
+      // categoriesHusband.push(this.categories.id)
       let data = {
         name: this.name,
         email: this.email,
@@ -304,15 +324,18 @@ export default {
           }
         });
     },
+
     editItem(item) {
       this.editedIndex = this.husbands.indexOf(item);
       this.editedItem = { ...item };
     },
+
     updateHusband() {
       if (this.editedIndex > -1) {
         let data = {
           id: this.editedItem.id,
           name: this.editedItem.name,
+          email: this.editedItem.email,
           phoneNumber: this.editedItem.phoneNumber,
           idCategories: ["1030"],
           description: this.editedItem.description,

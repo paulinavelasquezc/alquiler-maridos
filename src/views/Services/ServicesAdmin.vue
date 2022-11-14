@@ -19,190 +19,92 @@
               <card>
                 <tab-pane key="tab1">
                   <template slot="title">
-                    <i class="ni ni-circle-08 mr-2"></i>Servicios activos
+                    <i class="ni ni-time-alarm mr-2"></i>Servicios activos
                   </template>
                   <div>
-                    <div class="row">
-                      <div
-                        class="col-lg-6"
-                        v-for="item in husbands"
-                        :key="item.id"
-                      >
-                        <br />
-                        <div class="card">
-                          <div class="card-header">
-                            <div class="row">
-                              <div
-                                class="col-lg-3"
-                                v-for="category in item.categories"
-                                :key="category.id"
+                    <div class="table-responsive table-hover">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Marido</th>
+                            <th scope="col">Ubicación</th>
+                            <th scope="col">Fecha de atención</th>
+                            <th scope="col">Hora de atención</th>
+                            <th scope="col">Fecha de creación</th>
+                            <th scope="col">Detalles</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="item in activeServices" :key="item.id">
+                            <th scope="row">
+                              <badge
+                                style="
+                                  color: #ffffff;
+                                  background-color: #cb81b4;
+                                "
+                                type="success"
+                                rounded
+                                >{{ item.id }}</badge
                               >
-                                <badge
-                                  :style="{
-                                    'background-color': category.color,
-                                  }"
-                                  style="color: #ffffff"
-                                  type="success"
-                                  rounded
-                                  >{{ category.name }}</badge
-                                >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-lg-6">
-                                <h5 class="card-title">{{ item.name }}</h5>
-                                <p class="card-text">{{ item.email }}</p>
-                                <p class="card-text">{{ item.phoneNumber }}</p>
-                                <span>{{ item.description }}</span>
-                              </div>
-                              <div class="col-lg-6">
-                                <div class="col-sm-3 col-6 mt-5 mt-sm-0">
-                                  <img
-                                    v-lazy="'img/theme/user.png'"
-                                    alt="Raised image"
-                                    class="img-fluid rounded"
-                                    style="max-width: 180px; max-height: 180px"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <br />
-                            <base-button
-                              size="sm"
-                              type="light"
-                              class="mb-3"
-                              @click="
-                                modals.modal1 = true;
-                                editItem(item);
-                              "
-                            >
-                              Editar
-                            </base-button>
-                            <modal :show.sync="modals.modal1">
-                              <h6
-                                slot="header"
-                                class="modal-title"
-                                id="modal-title-default"
-                              >
-                                Editar Marido
-                              </h6>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <base-input
-                                    id="name"
-                                    placeholder="Nombre"
-                                    v-model="editedItem.name"
-                                    required
-                                  ></base-input>
-                                </div>
-                                <div class="col-md-6">
-                                  <base-input
-                                    id="number"
-                                    placeholder="Número de teléfono"
-                                    v-model="editedItem.phoneNumber"
-                                    required
-                                  ></base-input>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <textarea
-                                    id="description"
-                                    class="form-control"
-                                    v-model="editedItem.description"
-                                    rows="3"
-                                    placeholder="Descripción"
-                                    required
-                                  ></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                  <select class="form-control">
-                                    <option>Categorías</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <template slot="footer">
-                                <base-button
-                                  type="primary"
-                                  @click="updateHusband"
-                                  >Guardar</base-button
-                                >
-                                <base-button
-                                  type="link"
-                                  class="ml-auto"
-                                  @click="modals.modal1 = false"
-                                  >Cerrar
-                                </base-button>
-                              </template>
-                            </modal>
-                          </div>
-                        </div>
-                      </div>
+                            </th>
+                            <td>{{ item.idCustomer }}</td>
+                            <td>{{ item.idHusband }}</td>
+                            <td>{{ item.address }}</td>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.time }}</td>
+                            <td>{{ item.creationDate }}</td>
+                            <td>{{ item.details }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </tab-pane>
                 <tab-pane key="tab2">
                   <template slot="title">
-                    <i class="ni ni-collection mr-2"></i>Historial
+                    <i class="ni ni-calendar-grid-58 mr-2"></i>Historial
                   </template>
                   <div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <base-input
-                          id="name"
-                          placeholder="Nombre"
-                          v-model="name"
-                          required
-                        ></base-input>
-                      </div>
-                      <div class="col-md-6">
-                        <base-input
-                          id="email"
-                          v-model="email"
-                          placeholder="email@dominio.com"
-                          required
-                        ></base-input>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <base-input
-                          id="number"
-                          placeholder="Número de teléfono"
-                          v-model="phoneNumber"
-                          required
-                        ></base-input>
-                      </div>
-                      <div class="col-md-6">
-                        <select class="form-control">
-                          <option>Categorías</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <textarea
-                          id="description"
-                          class="form-control"
-                          v-model="description"
-                          rows="3"
-                          placeholder="Descripción"
-                          required
-                        ></textarea>
-                      </div>
-                    </div>
-                    <br />
-                    <div class="row justify-content-center">
-                      <div class="col-md-12">
-                        <base-button
-                          type="primary"
-                          icon="ni ni-cloud-download-95"
-                          @click="createHusband"
-                          >Crear
-                        </base-button>
+                    <div>
+                      <div class="table-responsive table-hover">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Cliente</th>
+                              <th scope="col">Marido</th>
+                              <th scope="col">Ubicación</th>
+                              <th scope="col">Fecha de atención</th>
+                              <th scope="col">Hora de atención</th>
+                              <th scope="col">Fecha de creación</th>
+                              <th scope="col">Detalles</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="item in services" :key="item.id">
+                              <th scope="row">
+                                <badge
+                                  style="
+                                    color: #ffffff;
+                                    background-color: #b9a0f4;
+                                  "
+                                  type="success"
+                                  rounded
+                                  >{{ item.id }}</badge
+                                >
+                              </th>
+                              <td>{{ item.idCustomer }}</td>
+                              <td>{{ item.idHusband }}</td>
+                              <td>{{ item.address }}</td>
+                              <td>{{ item.date }}</td>
+                              <td>{{ item.time }}</td>
+                              <td>{{ item.creationDate }}</td>
+                              <td>{{ item.details }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
@@ -217,21 +119,13 @@
 </template>
 <script>
 import axios from "axios";
-import Modal from "@/components/Modal.vue";
 import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
-import fromIdCategory from "../../util/husbandMapper.js";
-
-const Swal = require("sweetalert2");
 
 export default {
-  beforeMount() {
-    // this.getCategories()
-  },
   components: {
     Tabs,
     TabPane,
-    Modal,
   },
 
   data: () => ({
@@ -240,110 +134,29 @@ export default {
     },
     editedIndex: -1,
     editedItem: {},
-    husbands: [],
-    categories: [],
-    name: "",
-    phoneNumber: "",
-    email: "",
-    description: "",
+    services: [],
+    activeServices: []
   }),
 
   created() {
-    this.getHusbands();
+    this.getServices();
   },
 
   methods: {
-    getCategories() {
-      axios
-        .get("url")
-        .then((response) => this.setDataCategories(response.data));
-    },
-    // setDataCategories(husbands) {},
-    getHusbands() {
+    getServices() {
       axios
         .get(
-          "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/husbands/"
+          "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/services/"
         )
-        .then((response) => this.setDataHusbands(response.data));
+        .then((response) => this.setDataServices(response.data));
     },
-    setDataHusbands(husbands) {
-      this.husbands = husbands;
-      husbands.forEach((husband) => {
-        husband.categories = husband.idCategories.map(function (idCode) {
-          return fromIdCategory(idCode);
-        });
+    setDataServices(services) {
+      services.forEach((element) => {
+        if (element.isActive == true) {
+            this.activeServices.push(element)
+        }
       });
-    },
-    createHusband() {
-      let data = {
-        name: this.name,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-        idCategories: ["1030"],
-        description: this.description,
-      };
-      axios
-        .post(
-          "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/husbands/",
-          data
-        )
-        .then((data) => {
-          if (data.status == 200) {
-            this.getHusbands();
-            Swal.fire({
-              icon: "success",
-              title: "¡Bien hecho!",
-              text: "Marido creado correctamente",
-            });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Ocurrió un error",
-            });
-          }
-        });
-    },
-    editItem(item) {
-      this.editedIndex = this.husbands.indexOf(item);
-      this.editedItem = { ...item };
-    },
-    updateHusband() {
-      if (this.editedIndex > -1) {
-        let data = {
-          id: this.editedItem.id,
-          name: this.editedItem.name,
-          phoneNumber: this.editedItem.phoneNumber,
-          idCategories: ["1030"],
-          description: this.editedItem.description,
-        };
-        axios
-          .put(
-            "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/husbands/",
-            data
-          )
-          .then((dataResponse) => {
-            if (dataResponse.status == 200) {
-              this.getHusbands();
-              Swal.fire({
-                icon: "success",
-                title: "¡Bien hecho!",
-                text: "Marido actualizado correctamente",
-              });
-            } else {
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Ocurrió un error",
-              });
-            }
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-      } else {
-        this.husbands.push(this.editedItem);
-      }
+      this.services = services;
     },
   },
 };
