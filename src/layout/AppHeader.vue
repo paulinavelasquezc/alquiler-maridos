@@ -35,7 +35,7 @@
                         </a>
                     </div>
                 </base-dropdown> -->
-        <base-dropdown tag="li" class="nav-item">
+        <!-- <base-dropdown tag="li" class="nav-item">
           <a
             slot="title"
             href="#"
@@ -49,10 +49,10 @@
           <router-link to="/landing" class="dropdown-item"
             >Componentes</router-link
           >
-          <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link>
+           <router-link to="/profile" class="dropdown-item">Profile</router-link>
                     <router-link to="/login" class="dropdown-item">Login</router-link>
-                    <router-link to="/register" class="dropdown-item">Register</router-link> -->
-        </base-dropdown>
+                    <router-link to="/register" class="dropdown-item">Register</router-link> 
+        </base-dropdown> -->
         <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
           <a
             slot="title"
