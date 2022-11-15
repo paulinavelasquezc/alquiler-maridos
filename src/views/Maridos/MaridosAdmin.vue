@@ -43,7 +43,6 @@
                                   }"
                                   style="color: #ffffff"
                                   type="success"
-                                  rounded
                                   >{{ category.name }}</badge
                                 >
                               </div>
@@ -74,13 +73,15 @@
                               type="light"
                               class="mb-3"
                               @click="
-                                modals.modal1 = true;
                                 editItem(item);
+                                modals.modal1 = true;
                               "
                             >
                               Editar
                             </base-button>
-                            <modal :show.sync="modals.modal1">
+                            <modal
+                              :show.sync="modals.modal1"
+                            >
                               <h6
                                 slot="header"
                                 class="modal-title"
@@ -183,6 +184,7 @@
                       </div>
                       <div class="col-md-6">
                         <select class="form-control" v-model="category">
+                          <option value="" disabled selected>Categorías</option>
                           <option v-for="item in categories" :key="item.id">
                             {{ item.name }}
                           </option>
@@ -333,16 +335,15 @@ export default {
     updateHusband() {
       if (this.editedIndex > -1) {
         let data = {
-          id: this.editedItem.id,
           name: this.editedItem.name,
-          email: this.editedItem.email,
           phoneNumber: this.editedItem.phoneNumber,
           idCategories: ["1030"],
           description: this.editedItem.description,
         };
         axios
           .put(
-            "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/husbands/",
+            "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/husbands/" +
+              this.editedItem.id,
             data
           )
           .then((dataResponse) => {
@@ -353,6 +354,7 @@ export default {
                 title: "¡Bien hecho!",
                 text: "Marido actualizado correctamente",
               });
+              this.modals.modal1 = false;
             } else {
               Swal.fire({
                 icon: "error",
