@@ -9,7 +9,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <!-- Tabs with icons -->
+            <!-- Tabs -->
             <div class="mb-3">
               <h2 class="text-uppercase font-weight-bold">
                 Panel de administración de Servicios
@@ -34,6 +34,7 @@
                             <th scope="col">Hora de atención</th>
                             <th scope="col">Fecha de creación</th>
                             <th scope="col">Detalles</th>
+                            <th scope="col">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -45,7 +46,6 @@
                                   background-color: #cb81b4;
                                 "
                                 type="success"
-                                rounded
                                 >{{ item.id }}</badge
                               >
                             </th>
@@ -56,6 +56,57 @@
                             <td>{{ item.time }}</td>
                             <td>{{ item.creationDate }}</td>
                             <td>{{ item.details }}</td>
+                            <td>
+                              <base-button
+                                size="sm"
+                                type="warning"
+                                class="mb-3"
+                                @click="
+                                  editItem(item);
+                                  modals.modal1 = true;
+                                "
+                              >
+                                Finalizar
+                              </base-button>
+                              <modal
+                                :show.sync="modals.modal1"
+                                gradient="danger"
+                                modal-classes="modal-danger modal-dialog-centered"
+                              >
+                                <h6
+                                  slot="header"
+                                  class="modal-title"
+                                  id="modal-title-notification"
+                                >
+                                  ¡Atención!
+                                </h6>
+
+                                <div class="py-3 text-center">
+                                  <i class="ni ni-bell-55 ni-3x"></i>
+                                  <h4 class="heading mt-4">
+                                    ¿Está seguro de que desea modificar este
+                                    servicio?
+                                  </h4>
+                                  <p>Esta acción no se puede revertir</p>
+                                </div>
+
+                                <template slot="footer">
+                                  <base-button
+                                    type="white"
+                                    @click="updateService"
+                                    >Finalizar servicio</base-button
+                                  >
+                                  <base-button
+                                    type="link"
+                                    text-color="white"
+                                    class="ml-auto"
+                                    @click="modals.modal1 = false"
+                                  >
+                                    Cerrar
+                                  </base-button>
+                                </template>
+                              </modal>
+                            </td>
                           </tr>
                         </tbody>
                       </table>
@@ -121,11 +172,15 @@
 import axios from "axios";
 import Tabs from "@/components/Tabs/Tabs.vue";
 import TabPane from "@/components/Tabs/TabPane.vue";
+import Modal from "@/components/Modal.vue";
+
+const Swal = require("sweetalert2");
 
 export default {
   components: {
     Tabs,
     TabPane,
+    Modal,
   },
 
   data: () => ({
@@ -135,7 +190,7 @@ export default {
     editedIndex: -1,
     editedItem: {},
     services: [],
-    activeServices: []
+    activeServices: [],
   }),
 
   created() {
@@ -150,13 +205,55 @@ export default {
         )
         .then((response) => this.setDataServices(response.data));
     },
+
     setDataServices(services) {
       services.forEach((element) => {
         if (element.isActive == true) {
-            this.activeServices.push(element)
+          this.activeServices.push(element);
         }
       });
       this.services = services;
+    },
+
+    editItem(item) {
+      this.editedIndex = this.services.indexOf(item);
+      this.editedItem = { ...item };
+    },
+
+    updateService() {
+      if (this.editedIndex > -1) {
+        let data = {
+          isActive: false,
+        };
+        axios
+          .put(
+            "https://us-central1-api-fb-3b0eb.cloudfunctions.net/app/api/services/isActive/" +
+              this.editedItem.id,
+            data
+          )
+          .then((dataResponse) => {
+            if (dataResponse.status == 200) {
+              this.getServices();
+              Swal.fire({
+                icon: "success",
+                title: "¡Bien hecho!",
+                text: "Servicio finalizado correctamente",
+              });
+              this.modals.modal1 = false;
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Ocurrió un error",
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      } else {
+        this.services.push(this.editedItem);
+      }
     },
   },
 };
