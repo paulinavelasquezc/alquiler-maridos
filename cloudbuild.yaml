@@ -1,5 +1,5 @@
 steps:
-- name: 'node:3.8.0'  
+- name: 'node:4.9.1'  
   entrypoint: npm  
   args: ['install']  
 - name: 'gcr.io/cloud-builders/npm'
