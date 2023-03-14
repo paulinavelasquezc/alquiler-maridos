@@ -1,28 +1,7 @@
-# Nombre del pipeline
-name: deploy-web
-
-# Descripción del pipeline
-description: "Pipeline to deploy a static website to Google Cloud Storage"
-
-# Especifica el origen del código fuente
-source:
-  # El repositorio de origen debe ser una URL de GitHub
-  repoSource:
-    projectId: my-project
-    repoName: my-repo
-    branchName: main
-
-# Especifica los pasos que se ejecutarán en el pipeline
 steps:
-  # Paso de construcción
-  - name: build
-    # Utiliza la imagen de Docker para ejecutar el paso
-    image: gcr.io/cloud-builders/npm
-    # Especifica el comando para compilar el sitio web
-    args: ['install', '&&', 'npm', 'run', 'build']
-  # Paso de despliegue
-  - name: deploy
-    # Utiliza la imagen de Docker para ejecutar el paso
-    image: google/cloud-sdk
-    # Especifica el comando para copiar el contenido del sitio web al bucket de Google Cloud Storage
-    args: ['cp', '-r', 'dist/*', 'gs://my-bucket']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'build']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['app', 'deploy']
